@@ -4,28 +4,47 @@ class MovableObject {
     img;
     height = 150;
     width = 100;
-    imageChache={};
-    currentImg=0;
-    speed=0.15;
-    fps60= 1000/60;
-    otherDirection=false;
+    imageChache = {};
+    currentImg = 0;
+    speed = 0.15;
+    fps60 = 1000 / 60;
+    otherDirection = false;
+    speedY = 0;
+    acceleration = 2.5;
 
+
+    jump() {
+        this.speedY = 25;
+    }
 
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
-    loadImages(arr){
+    loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
-            img.src=path;
-            this.imageChache[path]=img;
+            img.src = path;
+            this.imageChache[path] = img;
         });
-       
+
     }
 
-    playAnimation(images){
+    applyGravity() {
+        setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+    isAboveGround() {
+        return this.y < 120;
+    }
+
+    playAnimation(images) {
         let i = this.currentImg % images.length;
         let path = images[i];
         this.img = this.imageChache[path];
@@ -33,14 +52,11 @@ class MovableObject {
     }
 
     moveRight() {
-        console.log('Moving right');
+        this.x += this.speed;
     }
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
+        this.x -= this.speed;
 
-        }, 1000 / 60
-        )
     }
 }
