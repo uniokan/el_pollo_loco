@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="img/2_character_pepe/1_idle/idle/I-1.png" type="image/x-icon">
 </head>
-<body onload="init()">
-    <h1>El pollo loco</h1>
 
-    <canvas width="720" height="480" id="canvas">
+<body onload="init()">
+
+    <div id="fullscreen">
+        <h1>El pollo loco</h1>
+
+        <canvas width="720" height="480" id="canvas">
+    </div>
 
     </canvas>
-
+    <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/character.class.js"></script>
     <script src="models/chicken.class.js"></script>
     <script src="models/cloud.class.js"></script>
     <script src="models/background-object.class.js"></script>
-    <script src="models/drawable-object.class.js"></script>
+    <script src="models/throwable-object.class.js"></script>
     <script src="models/status-bar.class.js"></script>
     <script src="models/keyboard.class.js"></script>
     <script src="models/endboss.class.js"></script>
@@ -27,4 +33,5 @@
     <script src="models/word.class.js"></script>
     <script src="./js/game.js"></script>
 </body>
+
 </html>

@@ -1,11 +1,4 @@
-class MovableObject {
-    x = 120;
-    y = 275;
-    img;
-    height = 150;
-    width = 100;
-    imageChache = {};
-    currentImg = 0;
+class MovableObject extends DrawableObject {
     speed = 0.15;
     fps60 = 1000 / 60;
     otherDirection = false;
@@ -14,27 +7,16 @@ class MovableObject {
     energy = 100;
     lastHit = 0;
 
+    
+    
+
 
     jump() {
         this.speedY = 25;
     }
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageChache[path] = img;
-        });
-
-    }
-
     applyGravity() {
-        setInterval(() => {
+        this.setStoppableInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
@@ -43,7 +25,12 @@ class MovableObject {
     }
 
     isAboveGround() {
-        return this.y < 120;
+        if (this instanceof ThorableObject) {
+            return true;
+        }
+        else {
+            return this.y < 120;
+        }
     }
 
     hit() {
@@ -55,6 +42,7 @@ class MovableObject {
 
         else {
             this.lastHit = new Date().getTime();
+
         }
     }
 
@@ -73,20 +61,6 @@ class MovableObject {
         let path = images[i];
         this.img = this.imageChache[path];
         this.currentImg++;
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = "6";
-            ctx.strokeStyle = "red";
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
     }
 
     isColliding(mo) {
