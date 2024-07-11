@@ -1,23 +1,19 @@
 class StatusBar extends DrawableObject {
-    IMAGES = [
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/60.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png',
-        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png',
-    ]
+    IMAGES;
+    percentage;
 
-    percentage = 100;
-
-    constructor() {
+    constructor(path,x, y, type, percentage) {
         super();
+        this.percentage=percentage;
+        this.IMAGES = path;
+        this.type = type;
         this.loadImages(this.IMAGES);
         this.setPercentage(this.percentage);
-        this.x = 50;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
         this.width = 200;
         this.height = 60;
+       
     }
 
     setPercentage(percentage) {
@@ -27,19 +23,19 @@ class StatusBar extends DrawableObject {
     }
 
     resolveImageIndex() {
-        if (this.percentage == 100) {
-            return 5;
-        } else if (this.percentage > 80) {
-            return 4;
-        } else if (this.percentage > 60) {
-            return 3;
-        } else if (this.percentage > 40) {
-            return 2;
-        } else if (this.percentage > 20) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-}
+        return this.type == 'health'|| this.type =='endboss'
+            ? this.percentage === 100 ? 5
+            : this.percentage > 80 ? 4
+            : this.percentage > 60 ? 3
+            : this.percentage > 40 ? 2
+            : this.percentage > 20 ? 1
+            : 0
+            : this.type == 'coins' || this.type =='flasks'
+            ? this.percentage === 100 ? 0
+            : this.percentage > 80 ? 1
+            : this.percentage > 60 ? 2
+            : this.percentage > 40 ? 3
+            : this.percentage > 20 ? 4
+            : 5
+            : null;
+    }}

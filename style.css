@@ -2,6 +2,60 @@ canvas {
     background-color: black;
 }
 
+.d-none{
+    display:none !important;
+}
+
+.fullscreen-icon{
+    height:50px;
+    width:50px;
+    position: absolute;
+    top:10px;
+    right:10px;
+    cursor: pointer;
+}
+
+.container{
+    position: relative;
+}
+
+.start-screen{
+    width:720px;
+    height:480px;
+    background-color: white;
+    background: url('img/5_background/second_half_background.png');
+    background-size: cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.start-screen img{
+    height:500px;
+    width:250px;
+    margin-top: -60px;
+    position: absolute;
+    left:0;
+}
+
+.start-btn{
+    padding: 16px;
+    background-color: orange;
+    border-radius: 20px;
+    cursor: pointer;
+    color:white;
+    font-size:24px;
+    border-style: none;
+    transition: all 225ms ease-in-out;
+
+    &:hover{
+        color:black;
+        transform: scale(1.03);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -22,6 +76,7 @@ h1 {
     font-size: 50px;
     letter-spacing: 3px;
     text-shadow: 5px 5px 3px rgba(255, 255, 255, 0.5);
+    text-align: center;
 }
 
 @font-face {

@@ -40,6 +40,34 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ]
 
+     IMAGES_HEALTH = [
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/60.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/80.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png'
+    ]
+
+    IMAGES_COINS=[
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
+    ]
+
+
+    IMAGES_FLASKS=[
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/40.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png'
+    ]
+
     world;
     walking_sound = new Audio('./sound/walk.ogg');
     jumping_sound = new Audio('./sound/jump.ogg');
@@ -95,7 +123,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_JUMPING);
             }
             else {
-                if (this.world.keyboard.RIGHT === true || this.world.keyboard.LEFT === true) {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }

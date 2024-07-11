@@ -2,36 +2,40 @@ class Chicken extends MovableObject {
     height = 70;
     width = 70;
     y = 343;
+
     IMAGES_WALKING = [
         './img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         './img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
         './img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
-
     ]
 
+    IMAGES_DEAD='img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
+
+
     constructor() {
-        super().loadImage('./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 250 + Math.random() * 500;
-        this.speed = 0.15 + Math.random() * 0.25;
+        this.x = 700 + Math.random() * 1000;
+        this.speed = 0.5 + Math.random() * 2;
         this.animate();
     }
 
+    dead() {
+        this.loadImage(this.IMAGES_DEAD);
+        clearInterval(this.updateImgInterval);
+        clearInterval(this.moveLeftInterval);
 
-
-    animate() {
-        setInterval(() => {
-            this.updateImg();
-        }, 200);
-        
-        setInterval(() => {
-            setInterval(() => {
-                this.moveLeft();
-            }, 1000 / 60
-            )
-        }, 400);
     }
 
+    animate() {
+        this.updateImgInterval = setInterval(() => {
+            this.updateImg();
+        }, 200);
+
+        this.moveLeftInterval = setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);
+    }
 
     updateImg() {
         this.playAnimation(this.IMAGES_WALKING);

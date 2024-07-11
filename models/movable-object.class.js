@@ -5,15 +5,16 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    coins = 0;
     lastHit = 0;
+    flasks = 0;
 
-    
-    
 
 
     jump() {
         this.speedY = 25;
     }
+
 
     applyGravity() {
         this.setStoppableInterval(() => {
@@ -24,6 +25,7 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+
     isAboveGround() {
         if (this instanceof ThorableObject) {
             return true;
@@ -33,28 +35,48 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     hit() {
         this.energy -= 5;
 
         if (this.energy < 0) {
             this.energy = 0;
         }
-
         else {
             this.lastHit = new Date().getTime();
-
         }
     }
+
+    increaseCoins() {
+        if (this.coins < 100) {
+            this.coins += 10;
+        }
+    }
+
+    increaseFlasks() {
+        if (this.flasks < 100) {
+            this.flasks += 10;
+        }
+    }
+
+    decreaseFlasks() {
+        if (this.flasks > 0) {
+            this.flasks -= 10;
+        }
+    }
+
 
     isDead() {
         return this.energy == 0;
     }
+
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 1;
     }
+
 
     playAnimation(images) {
         let i = this.currentImg % images.length;
@@ -63,12 +85,16 @@ class MovableObject extends DrawableObject {
         this.currentImg++;
     }
 
+
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height;
     }
+
+
+
 
     moveRight() {
         this.x += this.speed;

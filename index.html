@@ -9,12 +9,18 @@
     <link rel="shortcut icon" href="img/2_character_pepe/1_idle/idle/I-1.png" type="image/x-icon">
 </head>
 
-<body onload="init()">
+<body>
 
     <div id="fullscreen">
         <h1>El pollo loco</h1>
-
-        <canvas width="720" height="480" id="canvas">
+        <div class="container">
+            <canvas width="720" height="480" id="canvas" class="d-none">hallo</canvas>
+            <div class="start-screen" id="start-screen">
+                <img src="img/2_character_pepe/1_idle/long_idle/I-17.png" alt="el-pollo-loco">
+                <button class="start-btn" onclick="startGame()">Start Game</button>
+            </div>
+            <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
+        </div>
     </div>
 
     </canvas>
@@ -24,6 +30,8 @@
     <script src="models/chicken.class.js"></script>
     <script src="models/cloud.class.js"></script>
     <script src="models/background-object.class.js"></script>
+    <script src="models/coins.class.js"></script>
+    <script src="models/flasks.class.js"></script>
     <script src="models/throwable-object.class.js"></script>
     <script src="models/status-bar.class.js"></script>
     <script src="models/keyboard.class.js"></script>
