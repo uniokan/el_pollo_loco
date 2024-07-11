@@ -88,7 +88,15 @@ class World {
         if (this.character.isColliding(enemy)) {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy)
+
+            if(this.character.energy<= 0){
+                gameOver();
+            }
         }
+    }
+
+    gameOver(){
+        
     }
 
 
@@ -164,7 +172,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -179,7 +187,7 @@ class World {
         mo.x = mo.x * -1;
     }
 
-    
+
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

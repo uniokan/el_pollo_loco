@@ -23,23 +23,17 @@ canvas {
     width:720px;
     height:480px;
     background-color: white;
-    background: url('img/5_background/second_half_background.png');
+    background: url('img/9_intro_outro_screens/start/startscreen_2.png');
+    background-position: 55% 0;
     background-size: cover;
     display:flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
+    align-items: flex-start;
 }
 
-.start-screen img{
-    height:500px;
-    width:250px;
-    margin-top: -60px;
-    position: absolute;
-    left:0;
-}
 
 .start-btn{
+    margin-top:20px;
     padding: 16px;
     background-color: orange;
     border-radius: 20px;
