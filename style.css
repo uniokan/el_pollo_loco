@@ -2,67 +2,69 @@ canvas {
     background-color: black;
 }
 
-.d-none{
-    display:none !important;
+.d-none {
+    display: none !important;
 }
 
-.fullscreen-icon{
-    height:50px;
-    width:50px;
+.fullscreen-icon {
+    height: 50px;
+    width: 50px;
     position: absolute;
-    top:10px;
-    right:10px;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
-.container{
+.container {
     position: relative;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
 .game-over-btn,
-.game-win-btn{
-  position: absolute;
+.game-win-btn {
+    position: absolute;
 }
 
 .start-screen,
 #game-over-screen,
-#game-win-screen{
-    width:720px;
-    height:480px;
-    display:flex;
+#game-win-screen {
+    width: 720px;
+    height: 480px;
+    display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.start-screen{
-    background:  url('img/9_intro_outro_screens/start/startscreen_2.png') 55% 0 / cover no-repeat;
+.start-screen {
+    background: url('img/9_intro_outro_screens/start/startscreen_2.png') 55% 0 / cover no-repeat;
+    background-size: 100%;
 }
 
-#game-over-screen{
-    background:  url('img/9_intro_outro_screens/game_over/game over!.png') 55% 0 / cover no-repeat;
+#game-over-screen {
+    background: url('img/9_intro_outro_screens/game_over/game over!.png') 55% 0 / cover no-repeat;
+
 }
 
-#game-win-screen{
-    background:  url('img/9_intro_outro_screens/win/win_1.png') 55% 0 / cover no-repeat;
-    background-size: auto;
+#game-win-screen {
+    background: url('img/9_intro_outro_screens/win/win_1.png') 55% 40% / cover no-repeat;
+    background-size: 80%;
 }
 
 
-.btn{
-    margin-top:20px;
+.btn {
+    margin-top: 20px;
     padding: 16px;
     background-color: orange;
     border-radius: 20px;
     cursor: pointer;
-    color:white;
-    font-size:24px;
+    color: white;
+    font-size: 24px;
     border-style: none;
     transition: all 225ms ease-in-out;
 
-    &:hover{
-        color:black;
+    &:hover {
+        color: black;
         transform: scale(1.03);
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     }
@@ -96,28 +98,59 @@ h1 {
     src: url('fonts/zabars.ttf');
 }
 
-canvas{
-    display:block;
+canvas {
+    display: block;
 }
 
-@media only screen and (max-width:720px){
-    canvas{
-        width:100%
+@media only screen and (max-width:720px) {
+    canvas {
+        width: 100%
     }
-}
 
-@media only screen and (max-height:480px){
-    canvas, 
     .start-screen,
-    #game-over-screen{
-        height:100vh;
+    #game-win-screen{
+        width: 500px;
+     
     }
 
-    h1{
-        display:none;
+    .btn{
+        padding:16px;
+        font-size:20px;
+        margin-top:8px;
+    }
+}
+
+@media only screen and (max-width:510px) {
+    .start-screen,
+    #game-win-screen {
+        width: 300px ;
     }
 
-    body{
+    .btn{
+        padding:8px;
+        font-size:16px;
+        margin-top:8px;
+    }
+
+    .fullscreen-icon{
+        height:24px;
+        width:24px;
+    }
+}
+
+@media only screen and (max-height:480px) {
+
+    canvas,
+    .start-screen,
+    #game-over-screen {
+        height: 100vh;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    body {
         padding-top: 0;
     }
 }

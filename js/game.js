@@ -6,6 +6,7 @@ let fullscreenActive = false;
 
 
 function startGame(gameStatus) {
+    initLevel();
     canvas = document.getElementById('canvas');
     startScreen = document.getElementById('start-screen');
     let endScreen = document.getElementById('game-over-screen');
@@ -16,66 +17,50 @@ function startGame(gameStatus) {
     startScreen.classList.add('d-none');
     canvas.classList.remove('d-none');
     world = new World(canvas, keyboard, endScreen, gameWinScreen);
-
     console.log('My Character is', world.character);
 }
 
 function checkGameStatus(gameStatus, gameWinScreen, endScreen) {
     if (gameStatus == 'lost') {
         endScreen.classList.add('d-none');
-        window.location.reload();
     }
 
     else if (gameStatus == 'win') {
         gameWinScreen.classList.add('d-none');
-        window.location.reload();
     }
 }
 
-window.addEventListener("keydown", (event) => {
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-    if (event.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-    if (event.keyCode == 38) {
-        keyboard.UP = true;
-    }
-    if (event.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-    if (event.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
 
-    if (event.keyCode == 68) {
-        keyboard.D = true;
-    }
+window.addEventListener("keydown", (event) => {
+    setKeyboard(true);
 });
 
 
 window.addEventListener("keyup", (event) => {
+    setKeyboard(false);
+})
+
+function setKeyboard(boolean){
     if (event.keyCode == 39) {
-        keyboard.RIGHT = false;
+        keyboard.RIGHT = boolean;
     }
     if (event.keyCode == 37) {
-        keyboard.LEFT = false;
+        keyboard.LEFT = boolean;
     }
     if (event.keyCode == 38) {
-        keyboard.UP = false;
+        keyboard.UP = boolean;
     }
     if (event.keyCode == 40) {
-        keyboard.DOWN = false;
+        keyboard.DOWN = boolean;
     }
     if (event.keyCode == 32) {
-        keyboard.SPACE = false;
+        keyboard.SPACE = boolean;
     }
 
     if (event.keyCode == 68) {
-        keyboard.D = false;
+        keyboard.D = boolean;
     }
-})
+}
 
 
 function gameFullscreen() {
@@ -89,15 +74,16 @@ function gameFullscreen() {
     startScreen.style.width = '100%';
 }
 
+
 function gameNormalScreen() {
     let canvas = document.getElementById('canvas');
     let startScreen = document.getElementById('start-screen');
 
-    canvas.style.height = '480px';
-    canvas.style.width = '720px';
+    canvas.style.height = '';
+    canvas.style.width = '';
 
-    startScreen.style.height = '480px';
-    startScreen.style.width = '720px';
+    startScreen.style.height = '';
+    startScreen.style.width = '';
 }
 
 

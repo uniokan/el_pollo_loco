@@ -18,6 +18,8 @@ class World {
     GAME_MUSIC = new Audio('sound/game_music.ogg');
     CHICKEN_SOUND = new Audio('sound/chicken.ogg');
     ENEMY_HIT_SOUND = new Audio('sound/hurt_chicken.ogg');
+    GAME_WIN_SOUND= new Audio('sound/game_win.ogg');
+    GAME_LOST_SOUND= new Audio('sound/game_lost.ogg');
 
 
 
@@ -108,11 +110,13 @@ class World {
     }
 
     gameWin() {
+        this.GAME_WIN_SOUND.play();
         this.winScreen.classList.remove('d-none');
         this.stopSoundsAndIntervalls();
     }
 
     gameOver() {
+        this.GAME_LOST_SOUND.play();
         this.endScreen.classList.remove('d-none');
         this.stopSoundsAndIntervalls();
 
