@@ -5,18 +5,32 @@ let keyboard = new Keyboard();
 let fullscreenActive = false;
 
 
-function startGame() {
+function startGame(gameStatus) {
     canvas = document.getElementById('canvas');
     startScreen = document.getElementById('start-screen');
+    let endScreen = document.getElementById('game-over-screen');
+    let gameWinScreen = document.getElementById('game-win-screen');
+
+    checkGameStatus(gameStatus, gameWinScreen, endScreen);
 
     startScreen.classList.add('d-none');
     canvas.classList.remove('d-none');
-
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard, endScreen, gameWinScreen);
 
     console.log('My Character is', world.character);
 }
 
+function checkGameStatus(gameStatus, gameWinScreen, endScreen) {
+    if (gameStatus == 'lost') {
+        endScreen.classList.add('d-none');
+        window.location.reload();
+    }
+
+    else if (gameStatus == 'win') {
+        gameWinScreen.classList.add('d-none');
+        window.location.reload();
+    }
+}
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -88,16 +102,15 @@ function gameNormalScreen() {
 
 
 function fullscreen() {
-    console.log('test');
     let fullscreen = document.getElementById('fullscreen');
     if (!fullscreenActive) {
         enterFullscreen(fullscreen);
-        fullscreenActive=true;
+        fullscreenActive = true;
     }
-    else{
-       exitFullscreen();
-       fullscreenActive=false;
-       
+    else {
+        exitFullscreen();
+        fullscreenActive = false;
+
     }
 }
 

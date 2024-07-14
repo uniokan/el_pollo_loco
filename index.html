@@ -14,9 +14,15 @@
     <div id="fullscreen">
         <h1>El pollo loco</h1>
         <div class="container">
-            <canvas width="720" height="480" id="canvas" class="d-none">hallo</canvas>
+            <div id="game-over-screen" class="game-over-btn d-none">
+                <button onclick="startGame('lost')" class="btn">Play Again</button>
+            </div>
+            <div id="game-win-screen" class="game-win-btn d-none">
+                <button onclick="startGame('win')" class="btn">Play Again</button>
+            </div>
+            <canvas width="720" height="480" id="canvas" class="d-none"></canvas>
             <div class="start-screen" id="start-screen">
-                <button class="start-btn" onclick="startGame()">Start Game</button>
+                <button class="btn" onclick="startGame('start')">Start Game</button>
             </div>
             <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
         </div>

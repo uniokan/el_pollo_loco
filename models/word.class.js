@@ -4,6 +4,8 @@ class World {
     character = new Character();
     level = level1;
 
+    winScreen;
+    endScreen;
     canvas;
     ctx;
     camera_x = 0;
@@ -13,10 +15,13 @@ class World {
     health_Endboss = new StatusBar(this.level.enemies[3].IMAGES_STATUSBAR, 500, 40, 'endboss', 100)
     throwableObject = [new ThorableObject()]
     sound_bottle = new Audio('sound/throw_bottle.ogg');
+    GAME_MUSIC = new Audio('sound/game_music.ogg');
+    CHICKEN_SOUND = new Audio('sound/chicken.ogg');
+    ENEMY_HIT_SOUND = new Audio('sound/hurt_chicken.ogg');
 
 
 
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, endScreen, winScreen) {
         this.ctx = canvas.getContext('2d');
         this.draw = this.draw.bind(this);
         this.keyboard = keyboard;
@@ -24,6 +29,10 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.GAME_MUSIC.play();
+        this.CHICKEN_SOUND.play();
+        this.endScreen = endScreen;
+        this.winScreen = winScreen;
     }
 
 
@@ -66,10 +75,13 @@ class World {
 
             else {
                 enemy.energy -= 30;
-                this.health_Endboss.setPercentage(enemy.energy)
+                this.health_Endboss.setPercentage(enemy.energy);
+                this.ENEMY_HIT_SOUND.play();
                 if (enemy.energy <= 0) {
                     enemy.energy = 0;
                     this.enemyDead(enemy);
+                    this.gameWin();
+
                 }
             }
         }
@@ -89,14 +101,27 @@ class World {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy)
 
-            if(this.character.energy<= 0){
-                gameOver();
+            if (this.character.energy <= 0) {
+                this.gameOver();
             }
         }
     }
 
-    gameOver(){
-        
+    gameWin() {
+        this.winScreen.classList.remove('d-none');
+        this.stopSoundsAndIntervalls();
+    }
+
+    gameOver() {
+        this.endScreen.classList.remove('d-none');
+        this.stopSoundsAndIntervalls();
+
+    }
+
+    stopSoundsAndIntervalls() {
+        this.GAME_MUSIC.pause();
+        this.CHICKEN_SOUND.pause();
+        this.character.intervalIds.forEach(clearInterval);
     }
 
 
@@ -134,9 +159,9 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMapContainer();
         this.ctx.translate(-this.camera_x, 0);
-       
+
         this.addStatusBarToMap();
-    
+
     }
 
 

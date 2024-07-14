@@ -17,22 +17,40 @@ canvas {
 
 .container{
     position: relative;
+    display:flex;
+    justify-content: center;
 }
 
-.start-screen{
+.game-over-btn,
+.game-win-btn{
+  position: absolute;
+}
+
+.start-screen,
+#game-over-screen,
+#game-win-screen{
     width:720px;
     height:480px;
-    background-color: white;
-    background: url('img/9_intro_outro_screens/start/startscreen_2.png');
-    background-position: 55% 0;
-    background-size: cover;
     display:flex;
     justify-content: center;
     align-items: flex-start;
 }
 
+.start-screen{
+    background:  url('img/9_intro_outro_screens/start/startscreen_2.png') 55% 0 / cover no-repeat;
+}
 
-.start-btn{
+#game-over-screen{
+    background:  url('img/9_intro_outro_screens/game_over/game over!.png') 55% 0 / cover no-repeat;
+}
+
+#game-win-screen{
+    background:  url('img/9_intro_outro_screens/win/win_1.png') 55% 0 / cover no-repeat;
+    background-size: auto;
+}
+
+
+.btn{
     margin-top:20px;
     padding: 16px;
     background-color: orange;
@@ -89,7 +107,9 @@ canvas{
 }
 
 @media only screen and (max-height:480px){
-    canvas{
+    canvas, 
+    .start-screen,
+    #game-over-screen{
         height:100vh;
     }
 
