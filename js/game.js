@@ -3,10 +3,12 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let fullscreenActive = false;
+let level = levelStatus; 
+let levelCounter = 0; 
 
 
-function startGame(gameStatus) {
-    initLevel();
+function startGame(gameStatus, checkLevel) {
+    initLevel(checkLevel);
     canvas = document.getElementById('canvas');
     startScreen = document.getElementById('start-screen');
     let endScreen = document.getElementById('game-over-screen');
@@ -20,27 +22,33 @@ function startGame(gameStatus) {
     console.log('My Character is', world.character);
 }
 
+function nextLevel(gameStatus){
+    levelCounter++;
+    startGame(gameStatus, levelCounter)
+}
+
+
 function checkGameStatus(gameStatus, gameWinScreen, endScreen) {
     if (gameStatus == 'lost') {
         endScreen.classList.add('d-none');
     }
 
-    else if (gameStatus == 'win') {
+    else if (gameStatus == 'win' || gameStatus == 'next-level') {
         gameWinScreen.classList.add('d-none');
     }
 }
 
 
 window.addEventListener("keydown", (event) => {
-    setKeyboard(true);
+    setKeyboard(event, true);
 });
 
 
 window.addEventListener("keyup", (event) => {
-    setKeyboard(false);
+    setKeyboard(event, false);
 })
 
-function setKeyboard(boolean){
+function setKeyboard(event,boolean){
     if (event.keyCode == 39) {
         keyboard.RIGHT = boolean;
     }

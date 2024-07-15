@@ -2,8 +2,9 @@ class World {
 
 
     character = new Character();
-    level = level1;
+    level = levelStatus;
 
+    endBoss = this.level.enemies.length - 1;
     winScreen;
     endScreen;
     canvas;
@@ -12,14 +13,14 @@ class World {
     statusBar = new StatusBar(this.character.IMAGES_HEALTH, 50, 0, 'health', 100);
     statusBarCoins = new StatusBar(this.character.IMAGES_COINS, 50, 50, 'coins', 0);
     statusBarFlasks = new StatusBar(this.character.IMAGES_FLASKS, 50, 100, 'flasks', 0);
-    health_Endboss = new StatusBar(this.level.enemies[3].IMAGES_STATUSBAR, 500, 40, 'endboss', 100)
+    health_Endboss = new StatusBar(this.level.enemies[this.endBoss].IMAGES_STATUSBAR, 500, 40, 'endboss', 100)
     throwableObject = [new ThorableObject()]
     sound_bottle = new Audio('sound/throw_bottle.ogg');
     GAME_MUSIC = new Audio('sound/game_music.ogg');
     CHICKEN_SOUND = new Audio('sound/chicken.ogg');
     ENEMY_HIT_SOUND = new Audio('sound/hurt_chicken.ogg');
-    GAME_WIN_SOUND= new Audio('sound/game_win.ogg');
-    GAME_LOST_SOUND= new Audio('sound/game_lost.ogg');
+    GAME_WIN_SOUND = new Audio('sound/game_win.ogg');
+    GAME_LOST_SOUND = new Audio('sound/game_lost.ogg');
 
 
 
@@ -76,16 +77,23 @@ class World {
             }
 
             else {
-                enemy.energy -= 30;
-                this.health_Endboss.setPercentage(enemy.energy);
-                this.ENEMY_HIT_SOUND.play();
-                if (enemy.energy <= 0) {
-                    enemy.energy = 0;
-                    this.enemyDead(enemy);
-                    this.gameWin();
-
-                }
+                this.hitEndboss(enemy)
             }
+        }
+    }
+
+
+
+    hitEndboss(enemy) {
+        this.level.enemies[this.endBoss].hit(30);
+        console.log(enemy.energy);
+        this.health_Endboss.setPercentage(enemy.energy);
+        this.ENEMY_HIT_SOUND.play();
+        if (enemy.energy <= 0) {
+            enemy.energy = 0;
+            this.enemyDead(enemy);
+            this.gameWin();
+
         }
     }
 
@@ -100,7 +108,7 @@ class World {
 
     checkCollisionsWithEnemy(enemy) {
         if (this.character.isColliding(enemy)) {
-            this.character.hit();
+            this.character.hit(5);
             this.statusBar.setPercentage(this.character.energy)
 
             if (this.character.energy <= 0) {
@@ -201,7 +209,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
