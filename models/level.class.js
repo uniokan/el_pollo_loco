@@ -4,7 +4,7 @@ class Level {
     backgroundObjects;
     coins;
     flasks;
-    level_end_x = 2200;
+    level_end_x = 10000;
 
     constructor(enemies, clouds, backgroundObjects, coins, flasks) {
         this.enemies = enemies;

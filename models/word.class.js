@@ -4,6 +4,7 @@ class World {
     character = new Character();
     level = levelStatus;
 
+
     endBoss = this.level.enemies.length - 1;
     winScreen;
     endScreen;
@@ -24,7 +25,7 @@ class World {
 
 
 
-    constructor(canvas, keyboard, endScreen, winScreen) {
+    constructor(canvas, keyboard, endScreen, winScreen, levelCounter) {
         this.ctx = canvas.getContext('2d');
         this.draw = this.draw.bind(this);
         this.keyboard = keyboard;
@@ -85,15 +86,16 @@ class World {
 
 
     hitEndboss(enemy) {
-        this.level.enemies[this.endBoss].hit(30);
-        console.log(enemy.energy);
-        this.health_Endboss.setPercentage(enemy.energy);
-        this.ENEMY_HIT_SOUND.play();
         if (enemy.energy <= 0) {
             enemy.energy = 0;
             this.enemyDead(enemy);
             this.gameWin();
+        }
 
+        else{
+            this.level.enemies[this.endBoss].hit(30);
+            this.health_Endboss.setPercentage(enemy.energy);
+            this.ENEMY_HIT_SOUND.play();
         }
     }
 
@@ -108,6 +110,9 @@ class World {
 
     checkCollisionsWithEnemy(enemy) {
         if (this.character.isColliding(enemy)) {
+            if (enemy instanceof Endboss) {
+                this.character.hit(100);
+            }
             this.character.hit(5);
             this.statusBar.setPercentage(this.character.energy)
 
@@ -119,8 +124,9 @@ class World {
 
     gameWin() {
         this.GAME_WIN_SOUND.play();
-        this.winScreen.classList.remove('d-none');
         this.stopSoundsAndIntervalls();
+        this.winScreen.classList.remove('d-none');
+
     }
 
     gameOver() {

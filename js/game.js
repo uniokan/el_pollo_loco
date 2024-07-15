@@ -1,30 +1,57 @@
 let canvas;
+const MAX_LEVELS=3;
 
 let world;
 let keyboard = new Keyboard();
 let fullscreenActive = false;
-let level = levelStatus; 
-let levelCounter = 0; 
+let level = levelStatus;
+let levelCounter = 0;
+
+
+function getIds(){
+    return {
+        startGameBtn: document.getElementById('play-again-btn'),
+        nextLevelBtn: document.getElementById('next-level-btn'),
+        canvas: document.getElementById('canvas'),
+        startScreen: document.getElementById('start-screen'),
+        endScreen: document.getElementById('game-over-screen'),
+        gameWinScreen: document.getElementById('game-win-screen')
+    };
+}
 
 
 function startGame(gameStatus, checkLevel) {
     initLevel(checkLevel);
-    canvas = document.getElementById('canvas');
-    startScreen = document.getElementById('start-screen');
-    let endScreen = document.getElementById('game-over-screen');
-    let gameWinScreen = document.getElementById('game-win-screen');
 
-    checkGameStatus(gameStatus, gameWinScreen, endScreen);
+    const ids = getIds();
 
-    startScreen.classList.add('d-none');
-    canvas.classList.remove('d-none');
-    world = new World(canvas, keyboard, endScreen, gameWinScreen);
+    checkGameStatus(gameStatus, ids.gameWinScreen, ids.endScreen);
+
+    ids.nextLevelBtn.classList.remove('d-none');
+    ids.startGameBtn.innerText = 'Play Again';
+    ids.startScreen.classList.add('d-none');
+    ids.canvas.classList.remove('d-none');
+    world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen, levelCounter);
     console.log('My Character is', world.character);
 }
 
-function nextLevel(gameStatus){
+
+function nextLevel(gameStatus) {
+    let nextLevelBtn = document.getElementById('next-level-btn');
+    let startGameBtn = document.getElementById('play-again-btn');
     levelCounter++;
-    startGame(gameStatus, levelCounter)
+
+    if (levelCounter == MAX_LEVELS)  {
+        nextLevelBtn.classList.add('d-none');
+        levelCounter = 0;
+        startGameBtn.innerText = 'You win all levels.. Play Again';
+    }
+
+    else {
+        startGame(gameStatus, levelCounter)
+    }
+
+
 }
 
 
@@ -48,7 +75,7 @@ window.addEventListener("keyup", (event) => {
     setKeyboard(event, false);
 })
 
-function setKeyboard(event,boolean){
+function setKeyboard(event, boolean) {
     if (event.keyCode == 39) {
         keyboard.RIGHT = boolean;
     }

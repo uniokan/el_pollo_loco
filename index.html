@@ -18,8 +18,8 @@
                 <button onclick="startGame('lost', 0)" class="btn">Play Again</button>
             </div>
             <div id="game-win-screen" class="game-win-btn d-none">
-                <button onclick="startGame('win', 0)" class="btn">Play Again</button>
-                <button onclick="nextLevel('next-level')" class="btn">Next Level</button>
+                <button id="play-again-btn" onclick="startGame('win', 0)" class="btn">Play Again</button>
+                <button id="next-level-btn" onclick="nextLevel('next-level')" class="btn">Next Level</button>
 
             </div>
             <canvas width="720" height="480" id="canvas" class="d-none"></canvas>
