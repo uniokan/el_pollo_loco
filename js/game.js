@@ -1,5 +1,5 @@
 let canvas;
-const MAX_LEVELS=3;
+const MAX_LEVELS=2;
 
 let world;
 let keyboard = new Keyboard();
@@ -39,7 +39,6 @@ function startGame(gameStatus, checkLevel) {
 function nextLevel(gameStatus) {
     let nextLevelBtn = document.getElementById('next-level-btn');
     let startGameBtn = document.getElementById('play-again-btn');
-    levelCounter++;
 
     if (levelCounter == MAX_LEVELS)  {
         nextLevelBtn.classList.add('d-none');
@@ -48,7 +47,8 @@ function nextLevel(gameStatus) {
     }
 
     else {
-        startGame(gameStatus, levelCounter)
+        startGame(gameStatus, levelCounter);
+        levelCounter++;
     }
 
 

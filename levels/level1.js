@@ -135,7 +135,20 @@ function initLevel(checkLevel) {
     }
     else if (checkLevel == 2) {
         levelStatus = new Level([
-          
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
             new Endboss()
         ], [
             new Cloud()

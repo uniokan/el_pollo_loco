@@ -120,7 +120,7 @@ class World {
         }
     }
 
-    
+
     chickenIsNotDead(enemy) {
         if (this.character.isJumpingOn(enemy)) {
             this.jumpOnChicken(enemy);
@@ -236,7 +236,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

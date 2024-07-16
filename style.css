@@ -6,6 +6,43 @@ canvas {
     display: none !important;
 }
 
+.mt-24{
+    margin-top:-24px;
+}
+
+.keyboard-container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:32px;
+}
+
+.special-keys{
+    display:flex;
+    flex-direction: column;
+    gap:8px;
+    font-size: 32px;
+}
+
+.arrow-img{
+    height:40px;
+    width:40px;
+}
+
+.arrow{
+    display:flex;
+    flex-direction: column;
+    gap:4px;
+    align-items: center;
+    font-size:32px;
+}
+
+.arrow-container{
+    display:flex;
+    gap:8px;
+   
+}
+
 .fullscreen-icon {
     height: 50px;
     width: 50px;
@@ -13,6 +50,11 @@ canvas {
     top: 10px;
     right: 10px;
     cursor: pointer;
+    transition: all 225ms ease-in-out;
+
+    &:hover{
+        transform: scale(1.07);
+    }
 }
 
 .container {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 
 <body>
 
-    <div id="fullscreen">
+    <main id="fullscreen">
         <h1>El pollo loco</h1>
         <div class="container">
             <div id="game-over-screen" class="game-over-btn d-none">
@@ -19,7 +19,8 @@
             </div>
             <div id="game-win-screen" class="game-win-btn d-none">
                 <button id="play-again-btn" onclick="startGame('win', 0)" class="btn">Play Again</button>
-                <button id="next-level-btn" onclick="nextLevel('next-level')" class="btn next-level-btn">Next Level</button>
+                <button id="next-level-btn" onclick="nextLevel('next-level')" class="btn next-level-btn">Next
+                    Level</button>
 
             </div>
             <canvas width="720" height="480" id="canvas" class="d-none"></canvas>
@@ -28,7 +29,19 @@
             </div>
             <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
         </div>
-    </div>
+
+        <div class="keyboard-container">
+            <div class="arrow-container">
+                <div class="arrow"> <span> Move left</span> <img class="arrow-img" src="./img/arrow_left.png"> </div>
+                <div class="arrow  mt-24"> <span> Jump</span> <img class="arrow-img" src="./img/arrow_top.png"> </div>
+                <div class="arrow"> <span> Move right</span> <img class="arrow-img" src="./img/arrow_right.png"> </div>
+            </div>
+            <div class="special-keys">
+                <span> SPACE = JUMP </span>
+                <span> D = THROW BOTTLES </span>
+            </div>
+        </div>
+    </main>
 
     </canvas>
     <script src="models/drawable-object.class.js"></script>
