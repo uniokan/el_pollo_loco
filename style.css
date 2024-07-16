@@ -15,6 +15,8 @@ canvas {
     justify-content: space-between;
     align-items: center;
     margin-top:32px;
+    padding: 0 16px 0 16px;
+    gap:8px;
 }
 
 .special-keys{
@@ -68,11 +70,16 @@ canvas {
     position: absolute;
 }
 
-.start-screen,
+.start-screen{
+    height:480px;
+    width:720px;
+    text-align: center;
+}
+
 #game-over-screen,
 #game-win-screen {
-    width: 720px;
-    height: 480px;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -153,10 +160,10 @@ canvas {
         width: 100%
     }
 
-    .start-screen,
-    #game-win-screen{
-        width: 500px;
-     
+
+    .start-screen {
+        width: 100%;
+        height: 290px;
     }
 
     .btn{
@@ -170,6 +177,7 @@ canvas {
     .start-screen,
     #game-win-screen {
         width: 300px ;
+        height: 180px;
     }
 
     .btn{
@@ -181,6 +189,11 @@ canvas {
     .fullscreen-icon{
         height:24px;
         width:24px;
+    }
+
+    .special-keys,
+    .arrow{
+        font-size: 18px;
     }
 }
 

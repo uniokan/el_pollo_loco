@@ -31,7 +31,7 @@ function startGame(gameStatus, checkLevel) {
     ids.startGameBtn.innerText = 'Play Again';
     ids.startScreen.classList.add('d-none');
     ids.canvas.classList.remove('d-none');
-    world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen, levelCounter);
+    world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen);
     console.log('My Character is', world.character);
 }
 
@@ -50,8 +50,6 @@ function nextLevel(gameStatus) {
         startGame(gameStatus, levelCounter);
         levelCounter++;
     }
-
-
 }
 
 
@@ -73,7 +71,8 @@ window.addEventListener("keydown", (event) => {
 
 window.addEventListener("keyup", (event) => {
     setKeyboard(event, false);
-})
+});
+
 
 function setKeyboard(event, boolean) {
     if (event.keyCode == 39) {

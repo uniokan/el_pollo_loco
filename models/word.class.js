@@ -25,7 +25,7 @@ class World {
 
 
 
-    constructor(canvas, keyboard, endScreen, winScreen, levelCounter) {
+    constructor(canvas, keyboard, endScreen, winScreen) {
         this.ctx = canvas.getContext('2d');
         this.draw = this.draw.bind(this);
         this.keyboard = keyboard;
@@ -47,6 +47,7 @@ class World {
         }, 200);
     }
 
+
     checkThrowObjects() {
         if (this.keyboard.D && this.character.flasks > 0) {
             let bottle = new ThorableObject(this.character.x + 100, this.character.y + 100)
@@ -64,6 +65,7 @@ class World {
         }
     }
 
+
     checkCollisions() {
         this.level.enemies.forEach(enemy => this.checkCollisionsWithEnemy(enemy));
         this.level.coins.forEach(coin => this.checkCollisionsWithCoins(coin));
@@ -78,14 +80,15 @@ class World {
             }
 
             else {
-                this.hitEndboss(enemy)
+                this.hitEndboss(enemy, bottle)
             }
         }
+
     }
 
 
 
-    hitEndboss(enemy) {
+    hitEndboss(enemy, bottle) {
         if (enemy.energy <= 0) {
             enemy.energy = 0;
             this.enemyDead(enemy);
@@ -95,6 +98,7 @@ class World {
         else {
             this.level.enemies[this.endBoss].hit(30);
             this.health_Endboss.setPercentage(enemy.energy);
+            bottle.bottleHit(enemy);
             this.ENEMY_HIT_SOUND.play();
         }
     }
@@ -108,10 +112,12 @@ class World {
         }, 2000);
     }
 
+
     checkCollisionsWithEnemy(enemy) {
         if (this.character.isColliding(enemy)) {
             if (enemy instanceof Endboss) {
                 this.character.hit(100);
+                this.character.stopGame();
             }
 
             if (!enemy.isDead) {
@@ -132,7 +138,6 @@ class World {
             }
         }
     }
-
 
 
     jumpOnChicken(enemy) {
@@ -156,6 +161,7 @@ class World {
         this.stopSoundsAndIntervalls();
 
     }
+
 
     stopSoundsAndIntervalls() {
         this.GAME_MUSIC.pause();
