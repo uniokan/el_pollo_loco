@@ -13,6 +13,7 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 25;
+        console.log(this.speedY);
     }
 
 
@@ -94,8 +95,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-
-
     moveRight() {
         this.x += this.speed;
     }
@@ -103,5 +102,10 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
 
+    }
+    isJumpingOn(mo) {
+        return this.y + this.height > mo.y &&
+               this.y + this.height < mo.y + mo.height &&
+               this.speedY < 0; 
     }
 }

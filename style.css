@@ -51,6 +51,10 @@ canvas {
     background-size: 80%;
 }
 
+.next-level-btn{
+    background-color:rgba(255, 55, 22) !important;
+}
+
 
 .btn {
     margin: 20px 8px 0 0;

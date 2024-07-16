@@ -6,6 +6,7 @@ class Endboss extends MovableObject {
     IMAGES_DEAD = 'img/4_enemie_boss_chicken/5_dead/G26.png';
     energy = 100;
     speed = 2;
+    isDead=false;
 
     IMAGES_MOVING = [
         './img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -50,7 +51,6 @@ class Endboss extends MovableObject {
     }
 
     dead() {
-        console.log('hallo');
         this.loadImage(this.IMAGES_DEAD);
         clearInterval(this.enbossMoving);
         clearInterval(this.moveLeftInterval);
@@ -64,12 +64,12 @@ class Endboss extends MovableObject {
 
         }, 200)
 
-        this.moveLeftInterval = this.setStoppableInterval(() => {
+        this.moveLeftInterval = setInterval(() => {
             this.moveLeft();
 
         }, 1000 / 60);
 
-        this.movingInterval = this.setStoppableInterval(() => {
+        this.movingInterval = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
             if (this.isHurt()) {
                 this.playAnimation(this.ENDBOSS_HURT);

@@ -92,7 +92,7 @@ class World {
             this.gameWin();
         }
 
-        else{
+        else {
             this.level.enemies[this.endBoss].hit(30);
             this.health_Endboss.setPercentage(enemy.energy);
             this.ENEMY_HIT_SOUND.play();
@@ -104,23 +104,44 @@ class World {
         enemy.dead();
         setTimeout(() => {
             this.level.enemies = this.level.enemies.filter(e => e !== enemy);
+            this.endBoss = this.level.enemies.length - 1;
         }, 2000);
     }
-
 
     checkCollisionsWithEnemy(enemy) {
         if (this.character.isColliding(enemy)) {
             if (enemy instanceof Endboss) {
                 this.character.hit(100);
             }
-            this.character.hit(5);
-            this.statusBar.setPercentage(this.character.energy)
 
+            if (!enemy.isDead) {
+                this.chickenIsNotDead(enemy);
+            }
+        }
+    }
+
+    
+    chickenIsNotDead(enemy) {
+        if (this.character.isJumpingOn(enemy)) {
+            this.jumpOnChicken(enemy);
+        } else {
+            this.character.hit(5);
+            this.statusBar.setPercentage(this.character.energy);
             if (this.character.energy <= 0) {
                 this.gameOver();
             }
         }
     }
+
+
+
+    jumpOnChicken(enemy) {
+        if (enemy instanceof Chicken) {
+            this.enemyDead(enemy);
+            this.character.speedY = 25;
+        }
+    }
+
 
     gameWin() {
         this.GAME_WIN_SOUND.play();

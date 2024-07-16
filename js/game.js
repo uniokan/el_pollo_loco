@@ -169,7 +169,9 @@ document.addEventListener('msfullscreenchange', onFullScreenChange);
 function onFullScreenChange() {
     if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
         gameFullscreen();
+        fullscreenActive = true;
     } else {
         gameNormalScreen();
+        fullscreenActive = false;
     }
 }
