@@ -1,6 +1,7 @@
 let canvas;
 const MAX_LEVELS = 2;
 
+let gameIsMuted = false;
 let world;
 let keyboard = new Keyboard();
 let fullscreenActive = false;
@@ -47,6 +48,21 @@ function checkIfGameCanStarts(gameStatus) {
         startGame(ids);
     } else {
         errorMessage();
+    }
+}
+
+/**
+ * Toggles the mute state of the game.
+ * Mutes all sounds if the game is not currently muted, and unmutes them if it is.
+ */
+function getMute() {
+    if (!gameIsMuted) {
+        gameIsMuted=true;
+        world.stopSounds(true);
+    }
+    else{
+        gameIsMuted=false;
+        world.stopSounds(false);
     }
 }
 

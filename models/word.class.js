@@ -192,11 +192,25 @@ class World {
     }
 
     /**
-     * Stops all game sounds and intervals.
-     */
+    * Mutes or unmutes all game sounds.
+    * @param {boolean} state - The mute state. `true` to mute the sounds, `false` to unmute.
+    */
+    stopSounds(state) {
+        this.GAME_MUSIC.muted = state;
+        this.CHICKEN_SOUND.muted = state;
+        this.GAME_LOST_SOUND.muted = state;
+        this.ENEMY_HIT_SOUND.muted = state;
+        this.sound_bottle.muted = state;
+        this.character.walking_sound.muted = state;
+        this.character.jumping_sound.muted = state;
+        this.character.hurt_sound.muted = state;
+    }
+
+    /**
+    * Stops all game sounds and clears all intervals associated with the character.
+    */
     stopSoundsAndIntervalls() {
-        this.GAME_MUSIC.pause();
-        this.CHICKEN_SOUND.pause();
+        this.stopSounds;
         this.character.intervalIds.forEach(clearInterval);
     }
 
