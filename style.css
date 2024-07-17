@@ -6,46 +6,112 @@ canvas {
     display: none !important;
 }
 
-.mt-24{
-    margin-top:-24px;
+.mt-24 {
+    margin-top: -24px;
 }
 
-.keyboard-container{
-    display:flex;
+.keyboard-container {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top:32px;
+    margin-top: 32px;
     padding: 0 16px 0 16px;
-    gap:8px;
+    gap: 8px;
 }
 
-.special-keys{
-    display:flex;
+.panel-top img,
+.play-btn-container img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: orange;
+    padding: 8px;
+    border-radius: 30px;
+}
+
+.panel-top {
+    display: flex;
+    justify-content: right;
+    margin: 12px 120px 0 0;
+}
+
+.panel-bottom {
+    padding: 0 70px 16px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.play-btn-container {
+    display: flex;
+    gap: 16px;
+}
+
+
+.play-btn-container span {
+    background-color: orange;
+    padding: 8px;
+    border-radius: 30px;
+    color: black;
+    cursor: pointer;
+}
+
+.rotate-phone {
+    font-size: 16px;
+    position: absolute;
+    margin: 250px 16px 0 16px;
+    z-index: 9999;
+    background-color: orange;
+    border-radius: 20px;
+    padding: 16px;
+    transform: translateY(800px);
+    transition: transform 1s ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.panel-container {
+    position: absolute;
+    display: none;
     flex-direction: column;
-    gap:8px;
+    justify-content: space-between;
+    height: 400px;
+    width: 720px;
+}
+
+.to_middle {
+    transform: translateY(0);
+    transition: transform 1s ease-in-out;
+    pointer-events: none;
+}
+
+.special-keys {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     font-size: 32px;
 }
 
-.arrow-img{
-    height:40px;
-    width:40px;
+.arrow-img {
+    height: 40px;
+    width: 40px;
 }
 
-.arrow{
-    display:flex;
+.arrow {
+    display: flex;
     flex-direction: column;
-    gap:4px;
+    gap: 4px;
     align-items: center;
-    font-size:32px;
+    font-size: 32px;
 }
 
-.arrow-container{
-    display:flex;
-    gap:8px;
-   
+.arrow-container {
+    display: flex;
+    gap: 8px;
+
 }
 
 .fullscreen-icon {
+    z-index: 999;
     height: 50px;
     width: 50px;
     position: absolute;
@@ -54,7 +120,7 @@ canvas {
     cursor: pointer;
     transition: all 225ms ease-in-out;
 
-    &:hover{
+    &:hover {
         transform: scale(1.07);
     }
 }
@@ -70,9 +136,9 @@ canvas {
     position: absolute;
 }
 
-.start-screen{
-    height:480px;
-    width:720px;
+.start-screen {
+    height: 480px;
+    width: 720px;
     text-align: center;
 }
 
@@ -100,8 +166,8 @@ canvas {
     background-size: 80%;
 }
 
-.next-level-btn{
-    background-color:rgba(255, 55, 22) !important;
+.next-level-btn {
+    background-color: rgba(255, 55, 22) !important;
 }
 
 
@@ -115,6 +181,8 @@ canvas {
     font-size: 24px;
     border-style: none;
     transition: all 225ms ease-in-out;
+    position: relative;
+    z-index:999;
 
     &:hover {
         color: black;
@@ -160,39 +228,45 @@ canvas {
         width: 100%
     }
 
+    .panel-container{
+        width:100%;
+        height: 370px;
+    }
+
 
     .start-screen {
         width: 100%;
         height: 290px;
     }
 
-    .btn{
-        padding:16px;
-        font-size:20px;
-        margin-top:8px;
+    .btn {
+        padding: 16px;
+        font-size: 20px;
+        margin-top: 8px;
     }
 }
 
 @media only screen and (max-width:510px) {
+
     .start-screen,
     #game-win-screen {
-        width: 300px ;
+        width: 300px;
         height: 180px;
     }
 
-    .btn{
-        padding:8px;
-        font-size:16px;
-        margin-top:8px;
+    .btn {
+        padding: 8px;
+        font-size: 16px;
+        margin-top: 8px;
     }
 
-    .fullscreen-icon{
-        height:24px;
-        width:24px;
+    .fullscreen-icon {
+        height: 24px;
+        width: 24px;
     }
 
     .special-keys,
-    .arrow{
+    .arrow {
         font-size: 18px;
     }
 }
@@ -211,5 +285,11 @@ canvas {
 
     body {
         padding-top: 0;
+    }
+}
+
+@media only screen and (max-height:800px) {
+    .panel-container{
+        display:flex;
     }
 }

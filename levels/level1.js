@@ -1,7 +1,11 @@
 let levelStatus;
 
-function initLevel(checkLevel) {
-    if (checkLevel == 0) {
+/**
+ * Initializes the level based on the current level counter.
+ * The function sets up the game elements such as enemies, clouds, background objects, coins, and flasks.
+ */
+function initLevel() {
+    if (levelCounter == 0) {
         levelStatus = new Level([
             new Chicken(),
             new Chicken(),
@@ -49,7 +53,12 @@ function initLevel(checkLevel) {
             ],
 
             [
-                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 700, 120),
+                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 700, 350),
+                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1000, 350),
+                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1200, 350),
+                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1150, 350),
+                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1300, 350),
+                new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1700, 350),
                 new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 900, 170),
                 new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1100, 130),
                 new Flasks('img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png', 1200, 160),
@@ -65,8 +74,12 @@ function initLevel(checkLevel) {
         );
     }
 
-    else if (checkLevel == 1) {
+    else if (levelCounter == 1) {
         levelStatus = new Level([
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
             new Chicken(),
             new Chicken(),
             new Chicken(),
@@ -133,7 +146,7 @@ function initLevel(checkLevel) {
 
         );
     }
-    else if (checkLevel == 2) {
+    else if (levelCounter == 2) {
         levelStatus = new Level([
             new Chicken(),
             new Chicken(),

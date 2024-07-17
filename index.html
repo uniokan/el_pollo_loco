@@ -11,23 +11,43 @@
 
 <body>
 
+    <div id="rotate-phone" class="rotate-phone">
+        <span>Please rotate your phone in landscape format</span>
+    </div>
+
     <main id="fullscreen">
         <h1>El pollo loco</h1>
         <div class="container">
             <div id="game-over-screen" class="game-over-btn d-none">
-                <button onclick="startGame('lost', 0)" class="btn">Play Again</button>
+                <button onclick="checkIfGameCanStarts('lost')" class="btn">Play Again</button>
             </div>
             <div id="game-win-screen" class="game-win-btn d-none">
-                <button id="play-again-btn" onclick="startGame('win', 0)" class="btn">Play Again</button>
+                <button id="play-again-btn" onclick="checkIfGameCanStarts('win')" class="btn">Play Again</button>
                 <button id="next-level-btn" onclick="nextLevel('next-level')" class="btn next-level-btn">Next
                     Level</button>
 
             </div>
             <canvas width="720" height="480" id="canvas" class="d-none"></canvas>
             <div class="start-screen" id="start-screen">
-                <button class="btn" onclick="startGame('start', 0)">Start Game</button>
+                <button class="btn" onclick="checkIfGameCanStarts('start')">Start Game</button>
             </div>
             <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
+            <div id="panel-container" class="panel-container">
+                <div class="panel-top">
+                    <img src="./img/musiknote.png">
+                </div>
+                <div class="panel-bottom">
+                    <div class="play-btn-container">
+                        <span id="mobile-btn-left">◄</span>
+                        <span id="mobile-btn-right">►</span>
+                    </div>
+
+                    <div class="play-btn-container">
+                        <span id="mobile-btn-jump">+</span>
+                        <img id="mobile-btn-flask" src="./img/weinflasche.png">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="keyboard-container">

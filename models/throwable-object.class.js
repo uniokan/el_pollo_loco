@@ -1,3 +1,7 @@
+/**
+ * Class representing a throwable object.
+ * @extends MovableObject
+ */
 class ThorableObject extends MovableObject {
 
     FLASK_HIT_IMAGE = [
@@ -7,11 +11,16 @@ class ThorableObject extends MovableObject {
         './img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
         './img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         './img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
-    ]
+    ];
 
+    /**
+     * Creates an instance of ThorableObject.
+     * @param {number} x - The x-coordinate of the object.
+     * @param {number} y - The y-coordinate of the object.
+     */
     constructor(x, y) {
-        super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
-        this.loadImages(this.FLASK_HIT_IMAGE)
+        super().loadImage('img/6_salsa_bottle/bottle_rotation/rotation_sequences.gif');
+        this.loadImages(this.FLASK_HIT_IMAGE);
         this.x = x;
         this.y = y;
         this.height = 100;
@@ -19,8 +28,9 @@ class ThorableObject extends MovableObject {
         this.throw();
     }
 
-
-
+    /**
+     * Throws the object by applying horizontal and vertical movement.
+     */
     throw() {
         this.speedY = 30;
         this.applyGravity();
@@ -29,10 +39,12 @@ class ThorableObject extends MovableObject {
         }, 25);
     }
 
+    /**
+     * Animates the bottle hit by playing the splash images.
+     */
     bottleHit() {
         this.bottleExplodes = setInterval(() => {
             this.playAnimation(this.FLASK_HIT_IMAGE);
-        }, 100)
-
+        }, 100);
     }
 }

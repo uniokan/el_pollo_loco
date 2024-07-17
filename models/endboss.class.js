@@ -1,9 +1,12 @@
+/**
+ * Class representing the Endboss enemy.
+ * @extends MovableObject
+ */
 class Endboss extends MovableObject {
 
     height = 400;
     width = 300;
     y = 35;
-    // IMAGES_DEAD = 'img/4_enemie_boss_chicken/5_dead/G26.png';
     energy = 100;
     speed = 2;
     isDead = false;
@@ -12,8 +15,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G24.png',
         'img/4_enemie_boss_chicken/5_dead/G25.png',
         'img/4_enemie_boss_chicken/5_dead/G26.png'
-
-    ]
+    ];
 
     IMAGES_MOVING = [
         './img/4_enemie_boss_chicken/2_alert/G5.png',
@@ -24,7 +26,7 @@ class Endboss extends MovableObject {
         './img/4_enemie_boss_chicken/2_alert/G10.png',
         './img/4_enemie_boss_chicken/2_alert/G11.png',
         './img/4_enemie_boss_chicken/2_alert/G12.png'
-    ]
+    ];
 
     IMAGES_STATUSBAR = [
         'img/7_statusbars/2_statusbar_endboss/green/green0.png',
@@ -33,21 +35,24 @@ class Endboss extends MovableObject {
         'img/7_statusbars/2_statusbar_endboss/green/green60.png',
         'img/7_statusbars/2_statusbar_endboss/green/green80.png',
         'img/7_statusbars/2_statusbar_endboss/green/green100.png'
-    ]
+    ];
 
     IMAGES_WALKING = [
         './img/4_enemie_boss_chicken/1_walk/G1.png',
         './img/4_enemie_boss_chicken/1_walk/G2.png',
         './img/4_enemie_boss_chicken/1_walk/G3.png',
         './img/4_enemie_boss_chicken/1_walk/G4.png'
-    ]
+    ];
 
     ENDBOSS_HURT = [
         'img/4_enemie_boss_chicken/4_hurt/G21.png',
         'img/4_enemie_boss_chicken/4_hurt/G22.png',
         'img/4_enemie_boss_chicken/4_hurt/G23.png'
-    ]
+    ];
 
+    /**
+     * Creates an instance of Endboss.
+     */
     constructor() {
         super().loadImage('./img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.IMAGES_MOVING);
@@ -58,25 +63,28 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Plays the dead animation and clears movement intervals.
+     */
     dead() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_DEAD);
-        }, 150)
+        }, 150);
         clearInterval(this.enbossMoving);
         clearInterval(this.moveLeftInterval);
         clearInterval(this.movingInterval);
     }
 
-
+    /**
+     * Animates the Endboss by playing movement and walking animations.
+     */
     animate() {
         this.enbossMoving = setInterval(() => {
             this.playAnimation(this.IMAGES_MOVING);
-
-        }, 200)
+        }, 200);
 
         this.moveLeftInterval = setInterval(() => {
             this.moveLeft();
-
         }, 1000 / 60);
 
         this.movingInterval = setInterval(() => {
@@ -84,6 +92,6 @@ class Endboss extends MovableObject {
             if (this.isHurt()) {
                 this.playAnimation(this.ENDBOSS_HURT);
             }
-        }, 100)
+        }, 100);
     }
 }

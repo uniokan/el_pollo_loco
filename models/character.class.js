@@ -1,3 +1,8 @@
+/**
+ * Represents a game character that extends MovableObject.
+ * @extends MovableObject
+ */
+
 class Character extends MovableObject {
     height = 300;
     width = 150;
@@ -40,7 +45,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ]
 
-     IMAGES_HEALTH = [
+    IMAGES_HEALTH = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/40.png',
@@ -49,7 +54,7 @@ class Character extends MovableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png'
     ]
 
-    IMAGES_COINS=[
+    IMAGES_COINS = [
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png',
@@ -59,7 +64,7 @@ class Character extends MovableObject {
     ]
 
 
-    IMAGES_FLASKS=[
+    IMAGES_FLASKS = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/80.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/60.png',
@@ -69,10 +74,13 @@ class Character extends MovableObject {
     ]
 
     world;
-    walking_sound = new Audio('./sound/walk.ogg');
-    jumping_sound = new Audio('./sound/jump.ogg');
-    hurt_sound = new Audio('./sound/hurt.ogg');
+    walking_sound = Object.assign(new Audio('./sound/walk.ogg'), { volume: 0.7 });
+    jumping_sound = Object.assign(new Audio('./sound/jump.ogg'), { volume: 0.1 });
+    hurt_sound = Object.assign(new Audio('./sound/hurt.ogg'), { volume: 0.4 });
 
+    /**
+     * Constructs a Character object.
+     */
     constructor() {
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -83,52 +91,71 @@ class Character extends MovableObject {
         this.applyGravity();
     }
 
+    /**
+     * Initiates animations and movement logic for the character.
+     */
     animate() {
-
         this.setStoppableInterval(() => {
             this.walking_sound.pause();
-
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                this.walking_sound.play();
-            }
-
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                this.walking_sound.play();
-            }
-
-            if ((this.world.keyboard.UP || this.world.keyboard.SPACE) && !this.isAboveGround()) {
-                this.jump();
-                this.jumping_sound.play();
-            }
-
+            this.keyboardRight();
+            this.keyboardLeft();
+            this.keyboardUp();
             this.world.camera_x = -this.x + 100;
-
-        }, this.fps60)
+        }, this.fps60);
 
         this.setStoppableInterval(() => {
             this.hurt_sound.pause();
-            
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-            }
-            else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-                this.hurt_sound.play();
-            }
-            else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            }
-            else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
-            }
-        }, 50)
+            this.checkStatusOfCharacter();
+        }, 50);
     }
 
+    /**
+     * Handles character movement to the right based on keyboard input.
+     */
+    keyboardRight() {
+        if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            this.otherDirection = false;
+            this.walking_sound.play();
+        }
+    }
 
+    /**
+     * Handles character movement to the left based on keyboard input.
+     */
+    keyboardLeft() {
+        if (this.world.keyboard.LEFT && this.x > 0) {
+            this.moveLeft();
+            this.otherDirection = true;
+            this.walking_sound.play();
+        }
+    }
+
+    /**
+     * Handles character jumping based on keyboard input.
+     */
+    keyboardUp() {
+        if ((this.world.keyboard.UP || this.world.keyboard.SPACE) && !this.isAboveGround()) {
+            this.jump();
+            this.jumping_sound.play();
+        }
+    }
+
+    /**
+     * Checks and updates the status of the character (e.g., dead, hurt, jumping, walking).
+     */
+    checkStatusOfCharacter() {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEAD);
+        } else if (this.isHurt()) {
+            this.playAnimation(this.IMAGES_HURT);
+            this.hurt_sound.play();
+        } else if (this.isAboveGround()) {
+            this.playAnimation(this.IMAGES_JUMPING);
+        } else {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+        }
+    }
 }

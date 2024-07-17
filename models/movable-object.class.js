@@ -13,7 +13,6 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 25;
-        console.log(this.speedY);
     }
 
 
