@@ -288,7 +288,7 @@ canvas {
     }
 }
 
-@media only screen and (max-height:800px) {
+@media only screen and (max-height:650px) {
     .panel-container{
         display:flex;
     }
