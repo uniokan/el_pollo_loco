@@ -8,7 +8,7 @@ class Endboss extends MovableObject {
     width = 300;
     y = 35;
     energy = 100;
-    speed = 2;
+    speed = 1.5;
     isDead = false;
 
     IMAGES_DEAD = [

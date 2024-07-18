@@ -110,7 +110,7 @@ class World {
             this.enemyDead(enemy);
             this.gameWin();
         } else {
-            this.level.enemies[this.endBoss].hit(30);
+            enemy.hit(15);
             this.health_Endboss.setPercentage(enemy.energy);
             bottle.bottleHit(enemy);
             this.ENEMY_HIT_SOUND.play();

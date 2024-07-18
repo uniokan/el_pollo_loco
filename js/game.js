@@ -11,7 +11,7 @@ const mediaQuery = window.matchMedia('(min-width: 660px)');
 
 /**
  * @typedef {Object} DomElements
- * @property {HTMLElement} startGameBtn - The play again button element.
+ * @property {HTMLElement} playAgainBtn - The play again button element.
  * @property {HTMLElement} nextLevelBtn - The next level button element.
  * @property {HTMLCanvasElement} canvas - The game canvas element.
  * @property {HTMLElement} startScreen - The start screen element.
@@ -26,7 +26,8 @@ const mediaQuery = window.matchMedia('(min-width: 660px)');
  */
 function getIds() {
     return {
-        startGameBtn: document.getElementById('play-again-btn'),
+        startGameBtn: document.getElementById('start-game-btn'),
+        playAgainBtn: document.getElementById('play-again-btn'),
         nextLevelBtn: document.getElementById('next-level-btn'),
         canvas: document.getElementById('canvas'),
         startScreen: document.getElementById('start-screen'),
@@ -41,13 +42,13 @@ function getIds() {
  * @param {string} gameStatus - The current status of the game ('win', 'lost', 'next-level').
  */
 function checkIfGameCanStarts(gameStatus) {
+    const ids = getIds();
     if (mediaQuery.matches) {
         initLevel();
-        const ids = getIds();
         checkGameStatus(gameStatus, ids.gameWinScreen, ids.endScreen);
         startGame(ids);
     } else {
-        errorMessage();
+        errorMessage(ids);
     }
 }
 
@@ -77,7 +78,9 @@ function getMute() {
  */
 function startGame(ids) {
     ids.nextLevelBtn.classList.remove('d-none');
-    ids.startGameBtn.innerText = 'Play Again';
+    ids.nextLevelBtn.innerText = ' Next level';
+    ids.startGameBtn.innerText = 'Start Game'
+    ids.playAgainBtn.innerText = 'Play Again';
     ids.startScreen.classList.add('d-none');
     ids.canvas.classList.remove('d-none');
     world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen);
@@ -89,12 +92,11 @@ function startGame(ids) {
  * @function errorMessage
  * @description Displays an error message when the screen size is too small.
  */
-function errorMessage() {
-    document.getElementById('rotate-phone').classList.add('to_middle');
-
-    setTimeout(() => {
-        document.getElementById('rotate-phone').classList.remove('to_middle');
-    }, 3000);
+function errorMessage(ids) {
+    let text = 'Please rotate your phone and start game';
+    ids.startGameBtn.innerText = text;
+    ids.playAgainBtn.innerText = text;
+    ids.nextLevelBtn.innerText = text;
 }
 
 /**
@@ -104,12 +106,12 @@ function errorMessage() {
  */
 function nextLevel(gameStatus) {
     let nextLevelBtn = document.getElementById('next-level-btn');
-    let startGameBtn = document.getElementById('play-again-btn');
+    let playAgainBtn = document.getElementById('play-again-btn');
 
     if (levelCounter === MAX_LEVELS) {
         nextLevelBtn.classList.add('d-none');
         levelCounter = 0;
-        startGameBtn.innerText = 'You win all levels.. Play Again';
+        playAgainBtn.innerText = 'You win all levels.. Play Again';
     } else {
         levelCounter++;
         checkIfGameCanStarts(gameStatus);

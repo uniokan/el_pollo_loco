@@ -20,6 +20,8 @@ class DrawableObject{
     setStoppableInterval(fn,time){
         let id = setInterval(fn,time);
         this.intervalIds.push(id);
+
+        return id;
     }
 
       /**

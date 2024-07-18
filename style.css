@@ -59,19 +59,6 @@ canvas {
     cursor: pointer;
 }
 
-.rotate-phone {
-    font-size: 16px;
-    position: absolute;
-    margin: 250px 16px 0 16px;
-    z-index: 9999;
-    background-color: orange;
-    border-radius: 20px;
-    padding: 16px;
-    transform: translateY(800px);
-    transition: transform 1s ease-in-out;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .panel-container {
     position: absolute;
     display: none;
@@ -225,6 +212,10 @@ body {
 
 }
 
+#start-game-btn{
+    max-width:250px; 
+}
+
 h1 {
     font-size: 50px;
     letter-spacing: 3px;
@@ -303,6 +294,11 @@ canvas {
     .arrow {
         font-size: 18px;
     }
+
+    #start-game-btn{
+        max-width:180px; 
+    }
+    
 }
 
 @media only screen and (max-height:480px) {

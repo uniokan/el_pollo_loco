@@ -41,11 +41,11 @@ class Chicken extends MovableObject {
      * Animates the chicken by periodically updating its image and moving it to the left.
      */
     animate() {
-        this.updateImgInterval = setInterval(() => {
+        this.updateImgInterval = this.setStoppableInterval(() => {
             this.updateImg();
         }, 200);
 
-        this.moveLeftInterval = setInterval(() => {
+        this.moveLeftInterval = this.setStoppableInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
     }

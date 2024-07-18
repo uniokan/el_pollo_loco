@@ -11,10 +11,6 @@
 
 <body>
 
-    <div id="rotate-phone" class="rotate-phone">
-        <span>Please rotate your phone in landscape format</span>
-    </div>
-
     <main id="fullscreen">
         <h1>El pollo loco</h1>
         <div class="container">
@@ -29,7 +25,7 @@
             </div>
             <canvas width="720" height="480" id="canvas" class="d-none"></canvas>
             <div class="start-screen" id="start-screen">
-                <button class="btn" onclick="checkIfGameCanStarts('start')">Start Game</button>
+                <button id="start-game-btn" class="btn" onclick="checkIfGameCanStarts('start')">Start Game</button>
             </div>
             <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
             <img class="mute-img mute-img-startscreen" onclick="getMute()" src="./img/musiknote.png">
