@@ -104,6 +104,21 @@ canvas {
     width: 40px;
 }
 
+.back-to-game{
+    position: absolute;
+    right:50px;
+    top:60px;
+    font-size:32px;
+    text-decoration: none;
+    color:white;
+    transition: all 225ms ease-in-out;
+
+    &:hover{
+        transform: scale(1.07);
+        color:black;
+    }
+}
+
 .arrow {
     display: flex;
     flex-direction: column;
