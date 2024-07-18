@@ -68,6 +68,24 @@ canvas {
     width: 720px;
 }
 
+.imprint-container{
+    display:flex;
+    justify-content: center;
+}
+
+.imprint-container a{
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+    font-size: 32px;
+    transition: all 225ms ease-in-out;
+}
+
+.imprint-container a:hover {
+    transform: scale(1.07);
+    color:black;
+}
+
 .to_middle {
     transform: translateY(0);
     transition: transform 1s ease-in-out;
@@ -196,6 +214,14 @@ canvas {
     }
 }
 
+.imprint{
+    padding: 0 10% 130px 10%;
+    margin-top: -100px;
+    font-size:20px;
+    overflow-y: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -269,6 +295,10 @@ canvas {
     #game-win-screen {
         width: 300px;
         height: 180px;
+    }
+
+    .imprint-container a{
+        font-size: 20px;
     }
 
     .btn {
