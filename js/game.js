@@ -56,13 +56,17 @@ function checkIfGameCanStarts(gameStatus) {
  * Mutes all sounds if the game is not currently muted, and unmutes them if it is.
  */
 function getMute() {
-    if (!gameIsMuted) {
-        gameIsMuted=true;
-        world.stopSounds(true);
-    }
-    else{
-        gameIsMuted=false;
-        world.stopSounds(false);
+    const muteImg = document.querySelector('.mute-img');
+    if (world != undefined) {
+        if (!gameIsMuted) {
+            gameIsMuted = true;
+            world.stopSounds(true);
+            muteImg.classList.add('muted');
+        } else {
+            gameIsMuted = false;
+            world.stopSounds(false);
+            muteImg.classList.remove('muted');
+        }
     }
 }
 
@@ -77,6 +81,8 @@ function startGame(ids) {
     ids.startScreen.classList.add('d-none');
     ids.canvas.classList.remove('d-none');
     world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen);
+
+    if (gameIsMuted) world.stopSounds(true);
 }
 
 /**

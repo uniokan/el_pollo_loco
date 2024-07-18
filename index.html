@@ -32,9 +32,10 @@
                 <button class="btn" onclick="checkIfGameCanStarts('start')">Start Game</button>
             </div>
             <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
+            <img class="mute-img mute-img-startscreen" onclick="getMute()" src="./img/musiknote.png">
             <div id="panel-container" class="panel-container">
                 <div class="panel-top">
-                    <img onclick="getMute()" src="./img/musiknote.png">
+                    <img class="mute-img" onclick="getMute()" src="./img/musiknote.png">
                 </div>
                 <div class="panel-bottom">
                     <div class="play-btn-container">
@@ -43,7 +44,7 @@
                     </div>
 
                     <div class="play-btn-container">
-                        <span id="mobile-btn-jump">+</span>
+                        <span id="mobile-btn-jump">J</span>
                         <img id="mobile-btn-flask" src="./img/weinflasche.png">
                     </div>
                 </div>

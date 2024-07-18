@@ -61,7 +61,7 @@ class World {
      */
     checkThrowObjects() {
         if (this.keyboard.D && this.character.flasks > 0) {
-            let bottle = new ThorableObject(this.character.x + 100, this.character.y + 100);
+            let bottle = new ThorableObject(this.character.x + 100, this.character.y + 30);
             this.throwableObject.push(bottle);
             this.sound_bottle.play();
             this.character.decreaseFlasks();
@@ -199,6 +199,7 @@ class World {
         this.GAME_MUSIC.muted = state;
         this.CHICKEN_SOUND.muted = state;
         this.GAME_LOST_SOUND.muted = state;
+        this.GAME_WIN_SOUND.muted = state;
         this.ENEMY_HIT_SOUND.muted = state;
         this.sound_bottle.muted = state;
         this.character.walking_sound.muted = state;
