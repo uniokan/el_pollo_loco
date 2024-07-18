@@ -116,7 +116,7 @@ canvas {
 
 .fullscreen-icon,
 .mute-img-startscreen {
-    z-index: 999;
+    z-index: 998;
     height: 50px;
     width: 50px;
     position: absolute;
@@ -177,7 +177,7 @@ canvas {
 
 
 .btn {
-    margin: 20px 8px 0 0;
+    margin: 20px 8px 0 8px;
     padding: 16px;
     background-color: orange;
     border-radius: 20px;
