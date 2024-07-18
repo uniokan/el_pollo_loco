@@ -85,7 +85,10 @@ function startGame(ids) {
     ids.canvas.classList.remove('d-none');
     world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen);
 
-    if (gameIsMuted) world.stopSounds(true);
+    if (gameIsMuted) { 
+        world.stopSounds(true);
+        world.stopWinAndLostSound(true);
+    };
 }
 
 /**

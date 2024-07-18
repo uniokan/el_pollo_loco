@@ -198,8 +198,6 @@ class World {
     stopSounds(state) {
         this.GAME_MUSIC.muted = state;
         this.CHICKEN_SOUND.muted = state;
-        this.GAME_LOST_SOUND.muted = state;
-        this.GAME_WIN_SOUND.muted = state;
         this.ENEMY_HIT_SOUND.muted = state;
         this.sound_bottle.muted = state;
         this.character.walking_sound.muted = state;
@@ -207,11 +205,20 @@ class World {
         this.character.hurt_sound.muted = state;
     }
 
+     /**
+    * Mutes or unmutes win/lost game sounds.
+    * @param {boolean} state - The mute state. `true` to mute the sounds, `false` to unmute.
+    */
+    stopWinAndLostSound(state){
+        this.GAME_LOST_SOUND.muted = state;
+        this.GAME_WIN_SOUND.muted = state;
+    }
+    
     /**
     * Stops all game sounds and clears all intervals associated with the character.
     */
     stopSoundsAndIntervalls() {
-        this.stopSounds;
+        this.stopSounds(true);
         this.character.intervalIds.forEach(clearInterval);
     }
 
