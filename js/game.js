@@ -8,7 +8,9 @@ let fullscreenActive = false;
 let level = levelStatus;
 let levelCounter = 0;
 let mobileButtonsActive = false;
+let gameStarted = false;
 const mediaQuery = window.matchMedia('(min-width: 660px)');
+const mediaQueryMobile = window.matchMedia('(max-width: 666px)');
 
 /**
  * @typedef {Object} DomElements
@@ -74,6 +76,17 @@ function getMute() {
     }
 }
 
+function checkDevice() {
+    let blackScreen = document.querySelector('.device-phone');
+    if (gameStarted && mediaQueryMobile.matches) {
+        blackScreen.style.display = 'flex';
+    }
+
+    else{
+        blackScreen.style.display = 'none';
+    }
+}
+
 /**
  * @function startGame
  * @description Starts the game by updating the UI and initializing the World instance.
@@ -87,6 +100,8 @@ function startGame(ids) {
     ids.startScreen.classList.add('d-none');
     ids.canvas.classList.remove('d-none');
     world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen);
+    gameStarted = true;
+
 
     if (gameIsMuted) {
         world.stopSounds(true);
@@ -269,6 +284,7 @@ function adjustDivHeight() {
 
 window.addEventListener('load', adjustDivHeight);
 window.addEventListener('resize', adjustDivHeight);
+window.addEventListener('resize', checkDevice);
 
 // Event listeners for fullscreen change
 document.addEventListener('fullscreenchange', onFullScreenChange);
