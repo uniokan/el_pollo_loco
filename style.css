@@ -19,9 +19,6 @@ canvas {
     gap: 8px;
 }
 
-
-
-
 .mute-img,
 .play-btn-container img {
     height: 30px;
@@ -50,7 +47,6 @@ canvas {
     gap: 16px;
 }
 
-
 .play-btn-container span {
     background-color: orange;
     padding: 8px;
@@ -64,7 +60,7 @@ canvas {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    height: 400px;
+    height: 480px;
     width: 720px;
 }
 
@@ -180,6 +176,23 @@ canvas {
     text-align: center;
 }
 
+.device-phone{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index:1000;
+    width:100%;
+    background-color: black;
+    margin-top:-100px;
+    font-size: 64px;
+    display:none;
+}
+
+.device-phone span{
+    margin: 0 5% 0 5%;
+}
+
 #game-over-screen,
 #game-win-screen {
     width: 100%;
@@ -195,13 +208,20 @@ canvas {
 }
 
 #game-over-screen {
-    background: url('img/9_intro_outro_screens/game_over/game over!.png') 55% 0 / cover no-repeat;
+    background: 
+    url('img/9_intro_outro_screens/game_over/game over!.png') 55% 0 / cover no-repeat,
+    url('img/2_character_pepe/5_dead/D-55.png') left center / contain no-repeat;
+
+    background-color: lightblue;
 
 }
 
 #game-win-screen {
-    background: url('img/9_intro_outro_screens/win/win_1.png') 55% 40% / cover no-repeat;
-    background-size: 80%;
+    background: 
+    url('img/9_intro_outro_screens/win/win_1.png') 55% 40% / cover no-repeat,
+    url('img/2_character_pepe/3_jump/J-34.png') left center / contain no-repeat;
+    background-color: lightblue;
+    background-size: 40%;
 }
 
 .next-level-btn {
@@ -272,6 +292,11 @@ h1 {
     font-weight: 500;
 }
 
+.keyboard{
+    right:unset;
+    left:10px;
+}
+
 @font-face {
     font-family: 'zabras';
     src: url('fonts/zabars.ttf');
@@ -306,8 +331,7 @@ canvas {
 
 @media only screen and (max-width:510px) {
 
-    .start-screen,
-    #game-win-screen {
+    .start-screen{
         width: 300px;
         height: 180px;
     }
@@ -350,7 +374,8 @@ canvas {
 
     canvas,
     .start-screen,
-    #game-over-screen {
+    #game-over-screen,
+    #game-win-screen {
         height: 100vh;
     }
 
@@ -370,6 +395,20 @@ canvas {
 
     .mute-img-startscreen{
         display:none ;
+    }
+
+}
+
+@media only screen and (max-width:666px) {
+    .device-phone{
+        display:flex !important;
+    }
+}
+
+
+@media only screen and (max-height: 360px) {
+    .panel-container{
+        width:580px;
     }
 
 }

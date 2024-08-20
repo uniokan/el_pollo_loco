@@ -7,6 +7,7 @@ let keyboard = new Keyboard();
 let fullscreenActive = false;
 let level = levelStatus;
 let levelCounter = 0;
+let mobileButtonsActive = false;
 const mediaQuery = window.matchMedia('(min-width: 660px)');
 
 /**
@@ -62,10 +63,12 @@ function getMute() {
         if (!gameIsMuted) {
             gameIsMuted = true;
             world.stopSounds(true);
+            world.stopWinAndLostSound(true);
             muteImg.classList.add('muted');
         } else {
             gameIsMuted = false;
             world.stopSounds(false);
+            world.stopWinAndLostSound(false);
             muteImg.classList.remove('muted');
         }
     }
@@ -85,7 +88,7 @@ function startGame(ids) {
     ids.canvas.classList.remove('d-none');
     world = new World(ids.canvas, keyboard, ids.endScreen, ids.gameWinScreen);
 
-    if (gameIsMuted) { 
+    if (gameIsMuted) {
         world.stopSounds(true);
         world.stopWinAndLostSound(true);
     };
@@ -224,6 +227,48 @@ function onFullScreenChange() {
         fullscreenActive = false;
     }
 }
+
+/**
+ * @function openMobileButtons
+ * @description Toggles the visibility of the mobile button panel and the music button. 
+ *              If the mobile buttons are active, the panel is hidden and the music button is shown, 
+ *              otherwise the panel is shown and the music button is hidden.
+ */
+function openMobileButtons() {
+    let panelContainer = document.querySelector('.panel-container');
+    let musicBtn = document.getElementById('music-btn');
+    console.log('works');
+
+    mobileButtonsActive ?
+        (panelContainer.style.display = 'none', mobileButtonsActive = false, musicBtn.style.display = 'block') :
+        (panelContainer.style.display = 'flex', mobileButtonsActive = true, musicBtn.style.display = 'none');
+}
+
+/**
+ * @function adjustDivHeight
+ * @description Adjusts the height of the mobile button container (with class `.panel-container`)
+ *              to match the height of the canvas element.
+ */
+function adjustDivHeight() {
+    const canvas = document.getElementById('canvas');
+    const mobileButtons = document.querySelector('.panel-container');
+
+    if (canvas && mobileButtons) {
+        requestAnimationFrame(() => {
+            const canvasHeight = canvas.clientHeight;
+
+            if (canvasHeight > 0) {
+                mobileButtons.style.height = `${canvasHeight}px`;
+            } else {
+                setTimeout(adjustDivHeight, 50);
+            }
+        });
+
+    }
+}
+
+window.addEventListener('load', adjustDivHeight);
+window.addEventListener('resize', adjustDivHeight);
 
 // Event listeners for fullscreen change
 document.addEventListener('fullscreenchange', onFullScreenChange);

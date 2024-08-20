@@ -11,6 +11,12 @@ class DrawableObject{
     height = 150;
     width = 100;
     intervalIds=[];
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
 
      /**
      * Sets a stoppable interval that repeatedly calls a function.
@@ -47,6 +53,22 @@ class DrawableObject{
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
+
+    // drawFrame(ctx){
+
+    //        ctx.beginPath();
+    //        ctx.lineWidth = '5';
+    //        ctx.strokeStyle = 'blue';
+    //        let offsetX = this.x + this.offset.left;
+    //        let offsetY = this.y + this.offset.top;
+    //        let offsetWidth = this.width - this.offset.left - this.offset.right;
+    //        let offsetHeight = this.height - this.offset.top - this.offset.bottom;
+
+    //        ctx.rect(offsetX, offsetY, offsetWidth, offsetHeight);
+    //        ctx.stroke();
+
+        
+    // }
 
     /**
      * Loads multiple images into the image cache.

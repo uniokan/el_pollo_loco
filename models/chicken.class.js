@@ -15,6 +15,13 @@ class Chicken extends MovableObject {
     ];
 
     IMAGES_DEAD = 'img/3_enemies_chicken/chicken_normal/2_dead/dead.png';
+      /** @type {Object} The offset for the chicken's collision box. */
+      offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
 
     /**
      * Creates an instance of Chicken.

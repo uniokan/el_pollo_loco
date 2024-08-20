@@ -19,7 +19,13 @@ class World {
     ENEMY_HIT_SOUND = Object.assign(new Audio('sound/hurt_chicken.ogg'), { volume: 0.7 });
     GAME_WIN_SOUND = new Audio('sound/game_win.ogg');
     GAME_LOST_SOUND = new Audio('sound/game_lost.ogg');
-
+     /** @type {Object} The offset values for collision detection. */
+     offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
 
     /**
        * Constructs a new World instance.
@@ -61,7 +67,8 @@ class World {
      */
     checkThrowObjects() {
         if (this.keyboard.D && this.character.flasks > 0) {
-            let bottle = new ThorableObject(this.character.x + 100, this.character.y + 30);
+            let direction = this.keyboard.lastDirection;
+            let bottle = new ThorableObject(this.character.x + 100, this.character.y + 30, direction);
             this.throwableObject.push(bottle);
             this.sound_bottle.play();
             this.character.decreaseFlasks();
@@ -110,7 +117,7 @@ class World {
             this.enemyDead(enemy);
             this.gameWin();
         } else {
-            enemy.hit(15);
+            enemy.hit(3);
             this.health_Endboss.setPercentage(enemy.energy);
             bottle.bottleHit(enemy);
             this.ENEMY_HIT_SOUND.play();
@@ -137,8 +144,9 @@ class World {
         if (this.character.isColliding(enemy)) {
             if (enemy instanceof Endboss) {
                 this.character.hit(100);
-                this.character.stopGame();
+                // this.character.stopGame();
                 this.gameOver();
+       
             }
             if (!enemy.isDead) {
                 this.chickenIsNotDead(enemy);
@@ -158,6 +166,7 @@ class World {
             this.statusBar.setPercentage(this.character.energy);
             if (this.character.energy <= 0) {
                 this.gameOver();
+     
             }
         }
     }
@@ -220,6 +229,8 @@ class World {
     stopSoundsAndIntervalls() {
         this.stopSounds(true);
         this.character.intervalIds.forEach(clearInterval);
+        this.character.stopGame();
+      
     }
 
     /**
@@ -261,6 +272,8 @@ class World {
         this.getObjectsToDraw();
         requestAnimationFrame(this.draw);
     }
+
+ 
 
     /**
      * Translates the canvas and draws all objects in the game world.
@@ -316,6 +329,7 @@ class World {
         }
 
         mo.draw(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

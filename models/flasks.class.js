@@ -6,11 +6,20 @@ class Flasks extends MovableObject {
     width = 70;
     height = 80;
     flask_on_floor = 350;
+    offset = {
+        top: 20,
+        left: 20,
+        right: 20,
+        bottom: 20
+    };
+
+
 
     FLASKS_IMAGES = [
         'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ];
+
 
     /**
      * Creates an instance of Flasks.

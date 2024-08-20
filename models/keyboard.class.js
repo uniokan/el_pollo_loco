@@ -8,6 +8,7 @@ class Keyboard {
     DOWN = false;
     SPACE = false;
     D = false;
+    lastDirection ="right";
 
     /**
      * Creates an instance of Keyboard and binds events.
@@ -82,11 +83,17 @@ class Keyboard {
      */
     setKeyboard(event, state) {
         switch (event.keyCode) {
-            case 39:
+            case 39: // Right arrow key
                 this.RIGHT = state;
+                this.right_walking = state;
+                this.left_walking = false;
+                if (state) this.lastDirection = 'right'; // Speichert die letzte Richtung als 'right'
                 break;
-            case 37:
+            case 37: // Left arrow key
                 this.LEFT = state;
+                this.left_walking = state;
+                this.right_walking = false;
+                if (state) this.lastDirection = 'left'; // Speichert die letzte Richtung als 'left'
                 break;
             case 38:
                 this.UP = state;

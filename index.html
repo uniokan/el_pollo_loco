@@ -28,10 +28,12 @@
                 <button id="start-game-btn" class="btn" onclick="checkIfGameCanStarts('start')">Start Game</button>
             </div>
             <img onclick="fullscreen()" class="fullscreen-icon" src="./img/fullscreen.png" alt="fullscreen-icon">
-            <img class="mute-img mute-img-startscreen" onclick="getMute()" src="./img/musiknote.png">
+            <img id="music-btn" class="mute-img mute-img-startscreen" onclick="getMute()" src="./img/musiknote.png">
+            <img onclick="openMobileButtons()" title="Tasten für's Handy aktivieren" class="mute-img-startscreen mute-img keyboard" src="./img/keyboard.png">
             <div id="panel-container" class="panel-container">
                 <div class="panel-top">
                     <img class="mute-img" onclick="getMute()" src="./img/musiknote.png">
+            
                 </div>
                 <div class="panel-bottom">
                     <div class="play-btn-container">
@@ -61,6 +63,8 @@
             </div>
         </div>
     </main>
+
+    <div class="device-phone"><span>Please device your phone...</span></div>
 
     </canvas>
     <script src="models/drawable-object.class.js"></script>

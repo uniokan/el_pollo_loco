@@ -50,6 +50,14 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/4_hurt/G23.png'
     ];
 
+     /** @type {Object} The offset for the chicken's collision box. */
+     offset = {
+        top: 20,
+        left: 20,
+        right: 20,
+        bottom: 10
+    };
+
     /**
      * Creates an instance of Endboss.
      */

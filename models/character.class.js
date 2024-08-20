@@ -102,6 +102,14 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ]
 
+      /** @type {Object} The offset values for collision detection. */
+      offset = {
+        top: 15,
+        bottom: 15,
+        left: 20,
+        right: 30
+    };
+
     walking_sound = Object.assign(new Audio('./sound/walk.ogg'), { volume: 0.7 });
     jumping_sound = Object.assign(new Audio('./sound/jump.ogg'), { volume: 0.1 });
     hurt_sound = Object.assign(new Audio('./sound/hurt.ogg'), { volume: 0.4 });
@@ -119,7 +127,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_LONG_IDLE);
         this.animate();
         this.applyGravity();
-        this.checkIdle();
+        // this.checkIdle();
     }
 
     /**
